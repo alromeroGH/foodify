@@ -1,0 +1,108 @@
+h1 {
+    color: red;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th, td {
+    border: 1px solid black;
+    padding: 8px;
+    text-align: left;
+}
+
+th {
+    background-color: #f2f2f2;
+}
+
+.btn {
+    padding: 5px 10px;
+    margin: 2px;
+    border: none;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.btn-modificar {
+    background-color: #4CAF50; 
+    color: white;
+}
+
+.btn-eliminar {
+    background-color: #f44336; 
+    color: white;
+}
+
+/* POP UP */
+
+.popup {
+    display: none;
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    padding: 20px;
+    background-color: white;
+    border: 1px solid #ccc;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    z-index: 1000;
+}
+
+/* FORM POP UP  */
+
+.form-input input {
+    width: 20rem; 
+    padding: 8px; 
+    border: 2px solid #ccc; 
+    border-radius: 12px; 
+    box-sizing: border-box; /* Asegura que el padding no aumente el ancho del input */
+}
+
+.form-input input:focus {
+    border-color: black; /* Cambia el color del borde al hacer foco en el input */
+}
+
+.form-input select {
+    color: gray;
+    width: 20rem; 
+    padding: 8px; 
+    border: 2px solid #ccc; 
+    border-radius: 12px; 
+    box-sizing: border-box; /* Asegura que el padding no aumente el ancho del select */
+    appearance: none; /* Elimina el estilo por defecto del select */
+    background-color: white; /* Color de fondo */
+    cursor: pointer; /* Cambia el cursor al pasar sobre el select */
+}
+
+.olvido-password {
+    text-decoration: none;
+    color: black;
+    font-size: 12px;
+}
+
+.container-boton-modificar,
+.container-boton-cancelar {
+    display: inline-block;
+    width: 100px;
+    margin: 5px;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.container-boton-modificar {
+    background-color: rgb(67, 195, 67);
+}
+
+.container-boton-cancelar {
+    background-color: red;
+    margin-left: 50px;
+}
+
+.boton {
+    text-decoration: none;
+    color: white;
+    cursor: pointer;
+}

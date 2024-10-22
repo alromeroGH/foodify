@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="home.css">
+    <link href='https://fonts.googleapis.com/css?family=Rubik' rel='stylesheet'>
+    <link href='https://fonts.googleapis.com/css?family=Quicksand' rel='stylesheet'>
+    <title>Home page</title>
+</head>
+
+<body>
+    <!-- Barra de navegacion -->
+    <nav class="navbar">
+        <img src="../img/logo.png" alt="logo" class="logo">
+        <ul class="nav-links">
+            <li class="btn-primary" onclick="cambiarColor(this,'btn-primary','highlight-primary')">
+                <a href="#" target="_self">Inicio</a>
+            </li>
+            <li class="btn-primary" onclick="cambiarColor(this,'btn-primary','highlight-primary')">
+                <a href="../modificar-pedido/modificar-pedido.html">Pedido</a>
+            </li>
+            <li class="btn-primary" onclick="cambiarColor(this,'btn-primary','highlight-primary')">
+                <a href="../historial/historial.html">Historial</a>
+            </li>
+            <li class="btn-primary" onclick="cambiarColor(this,'btn-primary','highlight-primary')">
+                <a href="../perfil/perfil.html">Perfil</a>
+            </li>
+            <li class="btn-primary" onclick="cambiarColor(this,'btn-primary','highlight-primary')">
+                <a href="../index.html">Cerrar Sesion</a>
+            </li>
+        </ul>
+    </nav>
+
+    <!-- Banner de la pagina -->
+    <div class="banner">
+        <h2>Menu Semanal</h2>
+        <h4>¡ Selecciona tu  pedido !</h4>
+    </div>
+
+    <!-- Barra de dias -->
+    <div class="daybar">
+        <ul class="daybar-links">
+            <li class="day-button" onclick="cambiarDia(this, 'Lunes')">Lunes</li>
+            <li class="day-button" onclick="cambiarDia(this, 'Martes')">Martes</li>
+            <li class="day-button" onclick="cambiarDia(this, 'Miércoles')">Miércoles</li>
+            <li class="day-button" onclick="cambiarDia(this, 'Jueves')">Jueves</li>
+            <li class="day-button" onclick="cambiarDia(this, 'Viernes')">Viernes</li>
+        </ul>
+    </div>
+    
+    <!-- Menu de platos principales -->
+    <div class="menu"></div>
+    
+    <button id="scrollToTop" class="scroll-to-top">↑ Volver arriba</button>
+    <script src="home.js"></script>
+</body>
+</html>

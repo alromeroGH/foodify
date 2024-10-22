@@ -1,0 +1,49 @@
+* {
+    margin: 0;
+}
+
+/* main  */
+
+body {
+    background-image: url(../img/fondo-foodify2.jpg);
+    background-repeat: no-repeat; /* Evita que la imagen se repita */
+    background-size: cover; /* Cubre toda la pantalla, manteniendo la relación de aspecto */
+    background-position: center; /* Centra la imagen en el contenedor */
+    background-attachment: fixed; /* Mantiene la imagen fija al hacer scroll (opcional) */
+}
+
+.perfil-container {
+    margin-top: 6rem;
+    text-align: center;
+}
+
+h1 {
+    color: red;
+}
+
+img {
+    height: 100px;
+    width: 100px;
+}
+
+.container-botones {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centra horizontalmente el contenido */
+    justify-content: center; /* Centra verticalmente el contenido si fuera necesario */
+
+}
+
+.container-boton {
+    background-color: rgb(67, 195, 67);
+    width: 250px;
+    margin: 5px;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+
+.boton {
+    text-decoration: none;
+    color: white;
+}

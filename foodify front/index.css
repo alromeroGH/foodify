@@ -1,0 +1,67 @@
+* {
+    margin: 0;
+}
+
+/* header  */
+
+.nav-container {
+    background-color: red;
+    padding: 5px;
+}
+
+.boton-home-nav {
+    color: white;
+    text-decoration: none;
+}
+
+
+/* body */
+
+body {
+    background-image: url(img/fondo-foodify2.jpg);
+    background-repeat: no-repeat; /* Evita que la imagen se repita */
+    background-size: cover; /* Cubre toda la pantalla, manteniendo la relación de aspecto */
+    background-position: center; /* Centra la imagen en el contenedor */
+    background-attachment: fixed; /* Mantiene la imagen fija al hacer scroll (opcional) */
+}
+
+.container {
+    margin-top: 6rem;
+    text-align: center;
+}
+
+h1, h2 {
+    color: red;
+}
+
+.form-input input {
+    width: 20rem; 
+    padding: 8px; 
+    border: 2px solid #ccc; 
+    border-radius: 12px; 
+    box-sizing: border-box; /* Asegura que el padding no aumente el ancho del input */
+}
+
+.form-input input:focus {
+    border-color: black; /* Cambia el color del borde al hacer foco en el input */
+}
+.olvido-password {
+    text-decoration: none;
+    color: black;
+    font-size: 12px;
+}
+
+.container-boton {
+    display: inline-block;
+    width: 150px;
+    background-color: rgb(67, 195, 67);
+    margin: 5px;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.boton {
+    text-decoration: none;
+    color: white;
+    cursor: pointer;
+}

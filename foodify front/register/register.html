@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="register.css">
+    <title>Registrarse</title>
+</head>
+<body>
+   <main>
+       <div class="container">
+        <h1>Registro</h1>
+        <br>
+        <h2>¡Bienvendido a Foodify!</h2>
+        <br>
+        <p>Completa los datos requeridos</p>
+        <p>para registrarte y usar nuestro servicio</p>
+        <br>
+        <form action="">
+            <div class="form-input">
+                <input type="text" id="nombre" placeholder="Nombre">
+            </div>
+
+            <div>
+                <p style="color: red;" id="nombre-error"></p>
+            </div>
+            <br>
+            <div class="form-input">
+                <input type="text" id="apellido" placeholder="Apellido">
+            </div>
+
+            <div>
+                <p style="color: red;" id="apellido-error"></p>
+            </div>
+            <br>
+            <div class="form-input">
+                <input type="email" id="email" placeholder="Correo">
+            </div>
+
+            <div>
+                <p style="color: red;" id="email-error"></p>
+            </div>
+            <br>
+            <div class="form-input">
+                <input type="password" id="password" placeholder="Contraseña">
+            </div>
+
+            <div>
+                <p style="color: red;" id="password-error"></p>
+            </div>
+            <br>
+            <div class="form-input">
+                <input type="password" id="repetir-password" placeholder="Repetir contraseña">
+            </div>
+
+            <div>
+                <p style="color: red;" id="repetir-password-error"></p>
+            </div>
+        </form>
+        <br>
+        <div class="container-boton">
+            <a onclick="validarDatos()" class="boton">Registrarse</a>
+        </div>
+       </div>
+   </main>
+
+   <script src="register.js"></script>
+</body>
+</html>

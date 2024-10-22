@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="gestionar-menu.css">
+    <title>Gestión de menús</title>
+</head>
+<body>
+    <h1>Gestión de menús</h1>
+
+    <table id="menus">
+        <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>Descripción</th>
+                <th>Categoría</th>
+                <th>Stock</th>
+                <th>Días</th>
+                <th>Editar</th>
+            </tr>
+        </thead>
+        <tbody>
+           
+        </tbody>
+    </table>
+
+                <!-- POP UP -->
+                <div class="popup" id="popup">
+                    <h2>Modificar menú</h2>
+                    <form action="">
+                        <div class="form-input">
+                            <input type="text" id="nombre" placeholder="Nombre">
+                        </div>
+            
+                        <div>
+                            <p style="color: red;" id="nombre-error"></p>
+                        </div>
+                        <br>
+                        <div class="form-input">
+                            <select id="categoria">
+                                <option value="">Seleccione una categoría</option>
+                                <option value="PRINCIPAL">Principal</option>
+                                <option value="EMPANADA">Empanada</option>
+                                <option value="TARTA">Tarta</option>
+                                <option value="BEBIDA">Bebida</option>
+                            </select>
+                        </div>
+            
+                        <div>
+                            <p style="color: red;" id="categoria-error"></p>
+                        </div>
+                        <br>
+                        <div class="form-input">
+                            <input type="text" id="descripcion" placeholder="descripcion">
+                        </div>
+            
+                        <div>
+                            <p style="color: red;" id="descripcion-error"></p>
+                        </div>
+                        <br>
+                        <div class="form-input">
+                            <input type="number" id="stock" placeholder="Stock">
+                        </div>
+            
+                        <div>
+                            <p style="color: red;" id="stock-error"></p>
+                        </div>
+                        <br>
+                        <div class="dias">
+                            <label for="lunes">Lunes</label>
+                            <input type="checkbox" id="lunes" name="dias" value="LUNES" checked>
+            
+                            <label for="martes">Martes</label>
+                            <input type="checkbox" id="martes" name="dias" value="MARTES" checked>
+            
+                            <label for="miércoles">Miércoles</label>
+                            <input type="checkbox" id="miércoles" name="dias" value="MIERCOLES" checked>
+            
+                            <label for="jueves">Jueves</label>
+                            <input type="checkbox" id="jueves" name="dias" value="JUEVES" checked>
+            
+                            <label for="viernes">Viernes</label>
+                            <input type="checkbox" id="viernes" name="dias" value="VIERNES" checked>
+                        </div>
+            
+                        <div>
+                            <p style="color: red;" id="dias-error"></p>
+                        </div>
+                    </form>
+                    <br>
+                    <div class="container-boton-modificar">
+                        <a onclick="validarDatos()" class="boton">Agregar</a>
+                    </div>
+                    <div class="container-boton-cancelar">
+                        <a onclick="closePopup()" class="boton">Cancelar</a>
+                    </div>
+                   </div>
+                </div>
+
+    <script src="gestionar-menu.js"></script>
+</body>
+</html>

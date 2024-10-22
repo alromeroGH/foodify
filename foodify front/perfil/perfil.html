@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="perfil.css">
+    <title>Perfil</title>
+</head>
+<body>
+    <header>
+        <!-- Barra de navegacion -->
+    <nav class="navbar">
+    <img src="../img/logo.png" alt="logo" class="logo">
+    <ul class="nav-links">
+       <li class="btn-primary" onclick="cambiarColor(this,'btn-primary','highlight-primary')">
+           <a href="../home/home.html">Inicio</a>
+       </li>
+       <li class="btn-primary" onclick="cambiarColor(this,'btn-primary','highlight-primary')">
+           <a href="../modificar-pedido/modificar-pedido.html">Pedido</a>
+       </li>
+       <li class="btn-primary" onclick="cambiarColor(this,'btn-primary','highlight-primary')">
+           <a href="../historial/historial.html">Historial</a>
+       </li>
+       <li class="btn-primary" onclick="cambiarColor(this,'btn-primary','highlight-primary')">
+           <a href="#" target="_self">Perfil</a>
+       </li>
+       <li class="btn-primary" onclick="cambiarColor(this,'btn-primary','highlight-primary')">
+           <a href="../index.html">Cerrar Sesion</a>
+       </li>
+    </ul>
+    </nav>
+    </header>
+   <main>
+       <div class="perfil-container">
+        <h1>Perfil</h1>
+        <div class="perfil-img">
+            <img src="../img/perfil.png" alt="">
+        </div>
+        <h2>Nombre Apellido</h2>
+        <p>ejemplo@gmail.com</p>
+
+        <br>
+        <div class="container-boton">
+            <div class="container-boton-modificar">
+                <a class="boton" href="../modificar-perfil/modificar-perfil.html">Modificar perfil</a>
+            </div>
+            <br>
+            <div class="container-boton-baja">
+                <a onclick="darDeBaja()" class="boton">Darme de baja</a>
+            </div>
+           </div>
+        </div>
+
+        <script src="perfil.js"></script>
+   </main>
+</body>
+</html>

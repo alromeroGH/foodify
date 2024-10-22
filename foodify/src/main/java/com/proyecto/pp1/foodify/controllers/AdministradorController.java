@@ -1,0 +1,53 @@
+package com.proyecto.pp1.foodify.controllers;
+
+import java.util.List;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.proyecto.pp1.foodify.dao.IAdministradorDao;
+import com.proyecto.pp1.foodify.models.ItemMenu;
+import com.proyecto.pp1.foodify.models.modelsEnum.DiaEnum;
+import com.proyecto.pp1.foodify.request.MenuRequest;
+
+@RestController
+@CrossOrigin(origins = "http://127.0.0.1:5500") // Permitir solicitudes desde Live Server
+public class AdministradorController {
+    @Autowired
+    public IAdministradorDao administradorDao;
+
+    @PostMapping("/api/agregar")
+    public String agegarMenuNuevo(@RequestBody MenuRequest menuRequest) {
+        ItemMenu itemMenu = menuRequest.getItemMenuNuevo();
+        List<DiaEnum> diasMenu = menuRequest.getDiasMenuNuevo();
+
+        administradorDao.agregarMenu(itemMenu, diasMenu);
+
+        return "OK";
+    }
+
+    @GetMapping("/api/obtener")
+    public List<MenuRequest> getMenu() {
+        return administradorDao.getMenu();
+    }
+
+    @PostMapping("/api/eliminar")
+    public String eliminarMenu(@RequestBody int id) {
+        administradorDao.eliminarMenu(id);
+
+        return "OK";
+    }
+
+    @PostMapping("/api/modificar")
+    public String modificarMenu(@RequestBody MenuRequest menuRequest) {
+        ItemMenu itemMenu = menuRequest.getItemMenuNuevo();
+        List<DiaEnum> diasMenu = menuRequest.getDiasMenuNuevo();
+
+        administradorDao.modificarMenu(itemMenu, diasMenu);
+
+        return "OK";
+    }
+}

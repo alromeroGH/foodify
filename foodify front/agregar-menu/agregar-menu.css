@@ -1,0 +1,76 @@
+* {
+    margin: 0;
+}
+
+/* body */
+
+body {
+    background-image: url(../img/fondo-foodify2.jpg);
+    background-repeat: no-repeat; /* Evita que la imagen se repita */
+    background-size: cover; /* Cubre toda la pantalla, manteniendo la relación de aspecto */
+    background-position: center; /* Centra la imagen en el contenedor */
+    background-attachment: fixed; /* Mantiene la imagen fija al hacer scroll (opcional) */
+}
+
+.container {
+    margin-top: 6rem;
+    text-align: center;
+}
+
+h1, h2 {
+    color: red;
+}
+
+.form-input input {
+    width: 20rem; 
+    padding: 8px; 
+    border: 2px solid #ccc; 
+    border-radius: 12px; 
+    box-sizing: border-box; /* Asegura que el padding no aumente el ancho del input */
+}
+
+.form-input input:focus {
+    border-color: black; /* Cambia el color del borde al hacer foco en el input */
+}
+
+.form-input select {
+    color: gray;
+    width: 20rem; 
+    padding: 8px; 
+    border: 2px solid #ccc; 
+    border-radius: 12px; 
+    box-sizing: border-box; /* Asegura que el padding no aumente el ancho del select */
+    appearance: none; /* Elimina el estilo por defecto del select */
+    background-color: white; /* Color de fondo */
+    cursor: pointer; /* Cambia el cursor al pasar sobre el select */
+}
+
+.olvido-password {
+    text-decoration: none;
+    color: black;
+    font-size: 12px;
+}
+
+.container-boton-modificar,
+.container-boton-cancelar {
+    display: inline-block;
+    width: 100px;
+    margin: 5px;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.container-boton-modificar {
+    background-color: rgb(67, 195, 67);
+}
+
+.container-boton-cancelar {
+    background-color: red;
+    margin-left: 50px;
+}
+
+.boton {
+    text-decoration: none;
+    color: white;
+    cursor: pointer;
+}

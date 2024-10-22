@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="historial.css">
+
+    <link href='https://fonts.googleapis.com/css?family=Rubik' rel='stylesheet'>
+    <link href='https://fonts.googleapis.com/css?family=Quicksand' rel='stylesheet'>
+    <title>Home page</title>
+</head>
+
+<body>
+    <!-- Barra de navegacion -->
+    <nav class="navbar">
+        <img src="../img/logo.png" alt="logo" class="logo">
+        <ul class="nav-links">
+            <li class="btn-primary" onclick="cambiarColor(this,'btn-primary','highlight-primary')">
+                <a href="../home/home.html">Inicio</a>
+            </li>
+            <li class="btn-primary" onclick="cambiarColor(this,'btn-primary','highlight-primary')">
+                <a href="../modificar-pedido/modificar-pedido.html">Pedido</a>
+            </li>
+            <li class="btn-primary" onclick="cambiarColor(this,'btn-primary','highlight-primary')">
+                <a href="#" target="_self">Historial</a>
+            </li>
+            <li class="btn-primary" onclick="cambiarColor(this,'btn-primary','highlight-primary')">
+                <a href="../perfil/perfil.html">Perfil</a>
+            </li>
+            <li class="btn-primary" onclick="cambiarColor(this,'btn-primary','highlight-primary')">
+                <a href="../index.html">Cerrar Sesion</a>
+            </li>
+        </ul>
+    </nav>
+
+     <!-- Banner de la pagina -->
+     <div class="banner">
+        <h2>Historial de Pedidos</h2>
+        <h4>Consulta tus pedidos viejos</h4>
+    </div>
+
+    <div class="historial">
+        <ul id="historialList">
+            <li>Semana 06/10/2024</li>
+            <li>Semana 05/10/2024</li>
+            <li>Semana 04/10/2024</li>
+            <li>Semana 03/10/2024</li>
+            <li>Semana 02/10/2024</li>
+            <li>Semana 01/10/2024</li>
+        </ul>
+    </div>
+</body>

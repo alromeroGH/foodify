@@ -1,0 +1,162 @@
+/*-------------------- RESET CSS --------------------*/
+
+:root {
+    --color-blue: #213f6f;
+    --color-gray: #79747e;
+    --color-orange: #ffc888;
+    --color-dark-blue: #232a35;
+    --color-dark-orange: #ff9327;
+    --color-red: #ff6962;
+    --color-green: #8CD47E;
+    --color-white: #f5f5f5;
+
+    --font-quick: 'Quicksand', sans-serif;
+    --font-rubik: 'Rubik', sans-serif;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: var(--font-rubik);
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+    font-weight: normal;
+    font-style: normal;
+    cursor: pointer;
+}
+
+h1, h2, h3, h4 {
+    font-family: var(--font-quick);
+}
+
+/*-------------------- BOTONES --------------------*/
+.btn-primary {
+    background-color: transparent;
+    color: black;
+    font-size: 1rem;
+    font-weight: 500;
+    font-family: var(--font-rubik);
+    padding: 5px 14px;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.highlight-primary {
+    background-color: var(--color-dark-orange);
+}
+
+.day-button {
+    background-color: transparent;
+    color: black;
+    font-size: 1rem;
+    font-weight: 400;
+    font-family: var(--font-rubik);
+    padding: 5px 14px;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.highlight-day {
+    background-color: var(--color-orange);
+}
+
+/*---- ESTILO NAVBAR ----*/
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.5rem;
+}
+
+.nav-links {
+    display: flex;
+    list-style: none;
+}
+
+.nav-links li {
+    margin-left: 1rem;
+}
+
+.logo{
+    width: 30px;
+    height: 30px; 
+    
+}
+
+.usuario-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.usuario-img {
+    height: 15px;
+    width: 15px;
+    align-items: center;
+}
+
+/* main  */
+
+header {
+    background-color: white;
+}
+
+body {
+    background-image: url(../img/fondo-foodify2.jpg);
+    background-repeat: no-repeat; /* Evita que la imagen se repita */
+    background-size: cover; /* Cubre toda la pantalla, manteniendo la relación de aspecto */
+    background-position: center; /* Centra la imagen en el contenedor */
+    background-attachment: fixed; /* Mantiene la imagen fija al hacer scroll (opcional) */
+}
+
+.perfil-container {
+    margin-top: 6rem;
+    text-align: center;
+}
+
+h1 {
+    color: red;
+}
+
+img {
+    height: 100px;
+    width: 100px;
+}
+
+.container-boton {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centra horizontalmente el contenido */
+    justify-content: center; /* Centra verticalmente el contenido si fuera necesario */
+
+}
+
+.container-boton-modificar {
+    background-color: rgb(67, 195, 67);
+}
+
+.container-boton-modificar, 
+.container-boton-baja {
+    width: 250px;
+    margin: 5px;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.container-boton-baja {
+    background-color: red;
+    cursor: pointer;
+}
+
+.boton {
+    text-decoration: none;
+    color: white;
+    cursor: pointer;
+}

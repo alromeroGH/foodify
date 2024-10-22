@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="index.css">
+    <title>Inicio de sesión</title>
+</head>
+<body>
+   <main>
+       <div class="container">
+        <h1>Login</h1>
+        <br>
+        <h2>¡Bienvendido a Foodify!</h2>
+        <br>
+        <p>Ingresa tu correo para iniciar tu pedido,</p>
+        <p>tenemos muchos platos nuevos cada día</p>
+        <br>
+        <form action="">
+            <div class="form-input">
+                <input type="email" id="email" placeholder="Correo">
+            </div>
+
+            <div>
+                <p style="color: red;" id="email-error"></p>
+            </div>
+            <br>
+            <div class="form-input">
+                <input type="password" id="password" placeholder="Contraseña">
+            </div>
+
+            <div>
+                <p style="color: red;" id="password-error"></p>
+            </div>
+        </form>
+        <div>
+            <a class="olvido-password" href="#">¿Olvidaste tu contraseña?</a>
+        </div>
+        <div class="container-boton">
+            <a onclick="validarDatos()" class="boton">Iniciar Sesión</a>
+        </div>
+        <br>
+        <div class="container-boton">
+            <a class="boton" href="register/register.html">Registrarse</a>
+        </div>
+       </div>
+   </main>
+
+   <script src="index.js"></script>
+</body>
+</html>
