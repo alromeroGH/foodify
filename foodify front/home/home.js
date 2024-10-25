@@ -29,182 +29,147 @@ function cambiarDia(element, dia) {
   mostrarMenu(dia);
 }
 
+const obtenerColorPorCategoria = (categoria) => {
+  switch (categoria.toLowerCase()) {
+    case 'tarta': return '#8CD47E'; 
+    case 'principal': return '#FF6962'; 
+    case 'bebida': return '#A8D5BA'; 
+    case 'empanada': return '#FFC888';
+    default: return 'lightgray'; 
+  }
+}
+
+const obtenerImagenPorCategoria = (categoria) => {
+  switch (categoria.toLowerCase()) {
+    case 'tarta': return 'url(../img/tarta.jpeg)'; 
+    case 'principal': return 'url(../img/plato_1.jpg)'; 
+    case 'bebida': return 'url(../img/7up.jpeg)'; 
+    case 'empanada': return 'url(../img/empanada.jpeg)';
+    default: return 'url(../img/7up.jpeg)'; 
+  }
+}
+
 /* Mostrar menú */
-function mostrarMenu(dia) {
+async function mostrarMenu(dia) {
+  const request = await fetch('http://localhost:8080/api/obtener', {
+    method: 'GET',
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+    },
+  });
+
+  const menus = await request.json();
+
   const menuContainer = document.querySelector(".menu");
   menuContainer.innerHTML = ""; // Limpiar contenido existente
 
-  const comidas = menu[dia] || []; // Obtener las comidas del día
+  // Filtrar los platos por el día seleccionado
+  const comidasDelDia = menus.filter(comida => 
+    comida.diasMenu.includes(dia)
+  );
 
-  comidas.forEach(comida => {
-      const card = document.createElement("div");
-      card.classList.add("card");
-     
+  comidasDelDia.forEach(comida => {
+    const card = document.createElement("div");
+    card.classList.add("card");
+   
 
-      const cardImage = document.createElement("div");
-      cardImage.classList.add("card-image");
-      cardImage.style.backgroundImage = `url(${comida.image})`; // Asigna la imagen de fondo
-      cardImage.style.backgroundSize = 'cover'; // Asegura que la imagen cubra el área
-      cardImage.style.backgroundPosition = 'center'; // Centra la imagen
+    const cardImage = document.createElement("div");
+    cardImage.classList.add("card-image");
+    cardImage.style.backgroundImage = obtenerImagenPorCategoria(comida.itemMenuNuevo.categoria); // Asigna la imagen de fondo
+    cardImage.style.backgroundSize = 'cover'; // Asegura que la imagen cubra el área
+    cardImage.style.backgroundPosition = 'center'; // Centra la imagen
 
-      const cardContent = document.createElement("div");
-      cardContent.classList.add("card-content");
+    const cardContent = document.createElement("div");
+    cardContent.classList.add("card-content");
 
-      const cardHeader = document.createElement("span");
-      cardHeader.classList.add("card-header");
-      const foodType = document.createElement("p");
-      foodType.classList.add("food-type");
-      foodType.textContent = comida.type;
-      cardHeader.style.backgroundColor = comida.color
+    const cardHeader = document.createElement("span");
+    cardHeader.classList.add("card-header");
 
-      const quantityContainer = document.createElement("div");
-      quantityContainer.classList.add("quantity-container");
+    // categoria del plato
+    const foodType = document.createElement("p");
+    foodType.classList.add("food-type");
+    foodType.textContent = comida.itemMenuNuevo.categoria;
+    cardHeader.style.backgroundColor = obtenerColorPorCategoria(comida.itemMenuNuevo.categoria);
 
-      const cantidadLabel = document.createElement("p");
-      cantidadLabel.classList.add("quantity-label");
-      cantidadLabel.textContent = "Cantidad";
+    const quantityContainer = document.createElement("div");
+    quantityContainer.classList.add("quantity-container");
 
-      const buttonCardContainer = document.createElement("div");
-      buttonCardContainer.classList.add("button-card-container");
+    const cantidadLabel = document.createElement("p");
+    cantidadLabel.classList.add("quantity-label");
+    cantidadLabel.textContent = "Cantidad";
 
-      const restarButton = document.createElement("button");
-      restarButton.classList.add("button-card", "restar");
-      restarButton.textContent = "-";
+    const buttonCardContainer = document.createElement("div");
+    buttonCardContainer.classList.add("button-card-container");
 
-      const cantidadDisplay = document.createElement("p");
-      cantidadDisplay.classList.add("cantidad");
-      cantidadDisplay.textContent = "0";
+    const restarButton = document.createElement("button");
+    restarButton.classList.add("button-card", "restar");
+    restarButton.textContent = "-";
 
-      const sumarButton = document.createElement("button");
-      sumarButton.classList.add("button-card", "sumar");
-      sumarButton.textContent = "+";
+    const cantidadDisplay = document.createElement("p");
+    cantidadDisplay.classList.add("cantidad");
+    cantidadDisplay.textContent = "0";
 
-      buttonCardContainer.appendChild(restarButton);
-      buttonCardContainer.appendChild(cantidadDisplay);
-      buttonCardContainer.appendChild(sumarButton);
+    const sumarButton = document.createElement("button");
+    sumarButton.classList.add("button-card", "sumar");
+    sumarButton.textContent = "+";
 
-      quantityContainer.appendChild(cantidadLabel);
-      quantityContainer.appendChild(buttonCardContainer);
+    buttonCardContainer.appendChild(restarButton);
+    buttonCardContainer.appendChild(cantidadDisplay);
+    buttonCardContainer.appendChild(sumarButton);
+    quantityContainer.appendChild(cantidadLabel);
+    quantityContainer.appendChild(buttonCardContainer);
 
-      const foodName = document.createElement("h1");
-      foodName.classList.add("food-name");
-      foodName.textContent = comida.name;
+    // Crear y añadir una línea separadora
+    const separator1 = document.createElement("hr");
+    separator1.classList.add("separator");
 
-      cardHeader.appendChild(foodType);
-      cardContent.appendChild(cardHeader);
-      cardContent.appendChild(quantityContainer);
-      cardContent.appendChild(foodName);
+    // nombre del plato
+    const foodName = document.createElement("h1");
+    foodName.classList.add("food-name");
+    foodName.textContent = comida.itemMenuNuevo.nombre;
 
-      card.appendChild(cardImage);
-      card.appendChild(cardContent);
-      menuContainer.appendChild(card);
+    // Crear y añadir una línea separadora
+    const separator2 = document.createElement("hr");
+    separator2.classList.add("separator");
 
-      // Agregar la funcionalidad de sumar/restar
-      let cantidad = 0;
+    // Crear y añadir la descripción del plato
+    const foodDescription = document.createElement("p");
+    foodDescription.classList.add("food-description");
+    foodDescription.textContent = comida.itemMenuNuevo.descripcion;
 
-      restarButton.addEventListener("click", () => {
-          if (cantidad > 0) {
-              cantidad--;
-              cantidadDisplay.textContent = cantidad;
-          }
-      });
+    cardHeader.appendChild(foodType);
+    cardContent.appendChild(cardHeader);
+    cardContent.appendChild(quantityContainer);
+    cardContent.appendChild(separator1); // Añadir el separador
+    cardContent.appendChild(foodName);
+    cardContent.appendChild(separator2); // Añadir el separador
+    cardContent.appendChild(foodDescription);  // Añadir la descripción
 
-      sumarButton.addEventListener("click", () => {
-          cantidad++;
-          cantidadDisplay.textContent = cantidad;
-      });
-  });
-}
+    card.appendChild(cardImage);
+    card.appendChild(cardContent);
+    menuContainer.appendChild(card);
 
-// Mostrar menú del primer día al cargar la página
-document.addEventListener("DOMContentLoaded", () => {
-  mostrarMenu("Lunes");
+    // Agregar la funcionalidad de sumar/restar
+    let cantidad = 0;
+
+    restarButton.addEventListener("click", () => {
+        if (cantidad > 0) {
+            cantidad--;
+            cantidadDisplay.textContent = cantidad;
+        }
+    });
+
+    sumarButton.addEventListener("click", () => {
+        cantidad++;
+        cantidadDisplay.textContent = cantidad;
+    });
 });
-
-const menu = {
-  "Lunes": [
-      { name: "Milanesa con puré", type: "Principal", color: "#ff6962", image: "../img/plato_1.jpg" },
-      { name: "Spaghetti a la boloñesa", type: "Principal", color: "#ff6962", image: "../img/plato_1.jpg" },
-      { name: "Pollo al horno", type: "Principal", color: "#ff6962", image: "../img/plato_1.jpg" },
-      { name: "Lomo a la pimienta", type: "Principal", color: "#ff6962", image: "../img/plato_1.jpg" },
-      { name: "Pizza", type: "Principal", color: "#ff6962", image: "../img/plato_1.jpg" },
-      { name: "Empanada de carne", type: "Empanada", color: "#ffc888", image: "../img/empanada.jpeg" },
-      { name: "Empanada de pollo", type: "Empanada", color: "#ffc888", image: "../img/empanada.jpeg" },
-      { name: "Empanada de jamón y queso", type: "Empanada", color: "#ffc888", image: "../img/empanada.jpeg" },
-      { name: "Empanada de verdura", type: "Empanada", color: "#ffc888", image: "../img/empanada.jpeg" },
-      { name: "Empanada de humita", type: "Empanada", color: "#ffc888", image: "../img/empanada.jpeg" },
-      { name: "Tarta de verduras", type: "Tarta", color: "#8CD47E", image: "../img/tarta.jpeg" },
-      { name: "Tarta de carne", type: "Tarta", color: "#8CD47E", image: "../img/tarta.jpeg" },
-      { name: "Tarta de pollo", type: "Tarta", color: "#8CD47E", image: "../img/tarta.jpeg" },
-      { name: "Tarta de espinaca", type: "Tarta", color: "#8CD47E", image: "../img/tarta.jpeg" },
-      { name: "Tarta de queso", type: "Tarta", color: "#8CD47E", image: "../img/tarta.jpeg" }
-  ],
-  "Martes": [
-      { name: "Sopa de verduras", type: "Principal", color: "#ff6962", image: "../img/plato_1.jpg" },
-      { name: "Pollo al curry", type: "Principal", color: "#ff6962", image: "../img/plato_1.jpg" },
-      { name: "Guiso de lentejas", type: "Principal", color: "#ff6962", image: "../img/plato_1.jpg" },
-      { name: "Pasta con pesto", type: "Principal", color: "#ff6962", image: "../img/plato_1.jpg" },
-      { name: "Salmón a la parrilla", type: "Principal", color: "#ff6962", image: "../img/plato_1.jpg" },
-      { name: "Empanada de atún", type: "Empanada", color: "#ffc888", image: "../img/empanada.jpeg" },
-      { name: "Empanada de capresse", type: "Empanada", color: "#ffc888", image: "../img/empanada.jpeg" },
-      { name: "Empanada de pollo al ajillo", type: "Empanada", color: "#ffc888", image: "../img/empanada.jpeg" },
-      { name: "Empanada de zapallo", type: "Empanada", color: "#ffc888", image: "../img/empanada.jpeg" },
-      { name: "Empanada de roquefort", type: "Empanada", color: "#ffc888", image: "../img/empanada.jpeg" },
-      { name: "Tarta de manzana", type: "Tarta", color: "#8CD47E", image: "../img/tarta.jpeg" },
-      { name: "Tarta de durazno", type: "Tarta", color: "#8CD47E", image: "../img/tarta.jpeg" },
-      { name: "Tarta de frutilla", type: "Tarta", color: "#8CD47E", image: "../img/tarta.jpeg" },
-      { name: "Tarta de limón", type: "Tarta", color: "#8CD47E", image: "../img/tarta.jpeg" },
-      { name: "Tarta de queso y frutilla", type: "Tarta", color: "#8CD47E", image: "../img/tarta.jpeg" }
-  ],
-  "Miércoles": [
-      { name: "Milanesa con puré", type: "Principal", color: "#ff6962", image: "../img/plato_1.jpg" },
-      { name: "Spaghetti a la boloñesa", type: "Principal", color: "#ff6962", image: "../img/plato_1.jpg" },
-      { name: "Pollo al horno", type: "Principal", color: "#ff6962", image: "../img/plato_1.jpg" },
-      { name: "Lomo a la pimienta", type: "Principal", color: "#ff6962", image: "../img/plato_1.jpg" },
-      { name: "Pizza", type: "Principal", color: "#ff6962", image: "../img/plato_1.jpg" },
-      { name: "Empanada de carne", type: "Empanada", color: "#ffc888", image: "../img/empanada.jpeg" },
-      { name: "Empanada de pollo", type: "Empanada", color: "#ffc888", image: "../img/empanada.jpeg" },
-      { name: "Empanada de jamón y queso", type: "Empanada", color: "#ffc888", image: "../img/empanada.jpeg" },
-      { name: "Empanada de verdura", type: "Empanada", color: "#ffc888", image: "../img/empanada.jpeg" },
-      { name: "Empanada de humita", type: "Empanada", color: "#ffc888", image: "../img/empanada.jpeg" },
-      { name: "Tarta de verduras", type: "Tarta", color: "#8CD47E", image: "../img/tarta.jpeg" },
-      { name: "Tarta de carne", type: "Tarta", color: "#8CD47E", image: "../img/tarta.jpeg" },
-      { name: "Tarta de pollo", type: "Tarta", color: "#8CD47E", image: "../img/tarta.jpeg" },
-      { name: "Tarta de espinaca", type: "Tarta", color: "#8CD47E", image: "../img/tarta.jpeg" },
-      { name: "Tarta de queso", type: "Tarta", color: "#8CD47E", image: "../img/tarta.jpeg" }
-  ],
-  "Jueves": [
-      { name: "Sopa de verduras", type: "Principal", color: "#ff6962", image: "../img/plato_1.jpg" },
-      { name: "Pollo al curry", type: "Principal", color: "#ff6962", image: "../img/plato_1.jpg" },
-      { name: "Guiso de lentejas", type: "Principal", color: "#ff6962", image: "../img/plato_1.jpg" },
-      { name: "Pasta con pesto", type: "Principal", color: "#ff6962", image: "../img/plato_1.jpg" },
-      { name: "Salmón a la parrilla", type: "Principal", color: "#ff6962", image: "../img/plato_1.jpg" },
-      { name: "Empanada de atún", type: "Empanada", color: "#ffc888", image: "../img/empanada.jpeg" },
-      { name: "Empanada de capresse", type: "Empanada", color: "#ffc888", image: "../img/empanada.jpeg" },
-      { name: "Empanada de pollo al ajillo", type: "Empanada", color: "#ffc888", image: "../img/empanada.jpeg" },
-      { name: "Empanada de zapallo", type: "Empanada", color: "#ffc888", image: "../img/empanada.jpeg" },
-      { name: "Empanada de roquefort", type: "Empanada", color: "#ffc888", image: "../img/empanada.jpeg" },
-      { name: "Tarta de manzana", type: "Tarta", color: "#8CD47E", image: "../img/tarta.jpeg" },
-      { name: "Tarta de durazno", type: "Tarta", color: "#8CD47E", image: "../img/tarta.jpeg" },
-      { name: "Tarta de frutilla", type: "Tarta", color: "#8CD47E", image: "../img/tarta.jpeg" },
-      { name: "Tarta de limón", type: "Tarta", color: "#8CD47E", image: "../img/tarta.jpeg" },
-      { name: "Tarta de queso y frutilla", type: "Tarta", color: "#8CD47E", image: "../img/tarta.jpeg" }
-  ],
-  "Viernes": [
-      { name: "Milanesa con puré", type: "Principal", color: "#ff6962", image: "../img/plato_1.jpg" },
-      { name: "Spaghetti a la boloñesa", type: "Principal", color: "#ff6962", image: "../img/plato_1.jpg" },
-      { name: "Pollo al horno", type: "Principal", color: "#ff6962", image: "../img/plato_1.jpg" },
-      { name: "Lomo a la pimienta", type: "Principal", color: "#ff6962", image: "../img/plato_1.jpg" },
-      { name: "Pizza", type: "Principal", color: "#ff6962", image: "../img/plato_1.jpg" },
-      { name: "Empanada de carne", type: "Empanada", color: "#ffc888", image: "../img/empanada.jpeg" },
-      { name: "Empanada de pollo", type: "Empanada", color: "#ffc888", image: "../img/empanada.jpeg" },
-      { name: "Empanada de jamón y queso", type: "Empanada", color: "#ffc888", image: "../img/empanada.jpeg" },
-      { name: "Empanada de verdura", type: "Empanada", color: "#ffc888", image: "../img/empanada.jpeg" },
-      { name: "Empanada de humita", type: "Empanada", color: "#ffc888", image: "../img/empanada.jpeg" },
-      { name: "Tarta de verduras", type: "Tarta", color: "#8CD47E", image: "../img/tarta.jpeg" },
-      { name: "Tarta de carne", type: "Tarta", color: "#8CD47E", image: "../img/tarta.jpeg" },
-      { name: "Tarta de pollo", type: "Tarta", color: "#8CD47E", image: "../img/tarta.jpeg" },
-      { name: "Tarta de espinaca", type: "Tarta", color: "#8CD47E", image: "../img/tarta.jpeg" },
-      { name: "Tarta de queso", type: "Tarta", color: "#8CD47E", image: "../img/tarta.jpeg" }
-  ],
 }
+
+// Mostrar menú del primer día (Lunes) al cargar la página
+document.addEventListener("DOMContentLoaded", () => {
+  const lunesButton = document.querySelector('.day-button:first-child'); // Botón de Lunes
+  cambiarColor(lunesButton, 'day-button', 'highlight-day'); // Resaltar el botón Lunes
+  mostrarMenu("LUNES"); // Mostrar el menú del Lunes
+});

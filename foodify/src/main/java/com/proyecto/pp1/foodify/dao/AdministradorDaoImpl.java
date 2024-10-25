@@ -78,11 +78,14 @@ public class AdministradorDaoImpl implements IAdministradorDao {
 
     @Override
     public List<MenuRequest> getMenu() {
+        // devuelve array de objetos
         String sql = "SELECT im.id, im.nombre, im.descripcion, im.categoria, im.stock, " +
                 "GROUP_CONCAT(d.dia SEPARATOR ', ') AS dias " +
                 "FROM item_menu im " +
                 "INNER JOIN dia d ON d.id_item_menu = im.id " +
-                "GROUP BY im.id"; // devuelve array de objetos
+                "GROUP BY im.id " +
+                "ORDER BY FIELD(im.categoria, 'PRINCIPAL', 'EMPANADA', 'TARTA', 'BEBIDA')";
+        // FIELD() permite definir un orden específico para los valores de categoria
 
         // lista que contiene los array de objeto
         List<Object[]> resultados = entityManager.createNativeQuery(sql).getResultList();
