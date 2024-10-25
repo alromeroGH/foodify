@@ -16,7 +16,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 @Entity
-@Table(name = "pedido_itemMenu")
+@Table(name = "pedido_item_menu")
 public class PedidoItemMenu {
     @Id
     @Getter
@@ -44,6 +44,6 @@ public class PedidoItemMenu {
     @Getter
     @Setter
     @ManyToOne
-    @JoinColumn(name = "id_itemMenu")
+    @JoinColumn(name = "id_item_menu")
     private ItemMenu itemMenu;
 }
