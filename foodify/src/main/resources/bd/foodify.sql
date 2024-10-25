@@ -91,6 +91,13 @@ CREATE TABLE pedido_itemMenu (
     Foreign Key (id_itemMenu) REFERENCES item_menu (id)
 );
 
+ALTER TABLE pedido_itemMenu RENAME TO pedido_item_menu;
+
+ALTER TABLE pedido_item_menu CHANGE id_itemMenu id_item_menu INT;
+
+ALTER TABLE pedido_item_menu
+ADD CONSTRAINT fk_menu_item FOREIGN KEY (id_item_menu) REFERENCES item_menu (id);
+
 SELECT * FROM usuario;
 
 SELECT * FROM empleado;
