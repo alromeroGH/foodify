@@ -52,120 +52,189 @@ const obtenerImagenPorCategoria = (categoria) => {
 /* Mostrar menú */
 async function mostrarMenu(dia) {
   const request = await fetch('http://localhost:8080/api/obtener', {
-    method: 'GET',
-    headers: {
-      'Accept': 'application/json',
-      'Content-Type': 'application/json'
-    },
+      method: 'GET',
+      headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+      },
   });
-
   const menus = await request.json();
-
   const menuContainer = document.querySelector(".menu");
   menuContainer.innerHTML = ""; // Limpiar contenido existente
 
-  // Filtrar los platos por el día seleccionado
-  const comidasDelDia = menus.filter(comida => 
-    comida.diasMenu.includes(dia)
-  );
-
+  const comidasDelDia = menus.filter(comida => comida.diasMenu.includes(dia));
   comidasDelDia.forEach(comida => {
-    const card = document.createElement("div");
-    card.classList.add("card");
-   
+      const card = document.createElement("div");
+      card.classList.add("card");
 
-    const cardImage = document.createElement("div");
-    cardImage.classList.add("card-image");
-    cardImage.style.backgroundImage = obtenerImagenPorCategoria(comida.itemMenuNuevo.categoria); // Asigna la imagen de fondo
-    cardImage.style.backgroundSize = 'cover'; // Asegura que la imagen cubra el área
-    cardImage.style.backgroundPosition = 'center'; // Centra la imagen
+      const cardImage = document.createElement("div");
+      cardImage.classList.add("card-image");
+      cardImage.style.backgroundImage = obtenerImagenPorCategoria(comida.itemMenuNuevo.categoria);
+      cardImage.style.backgroundSize = 'cover';
+      cardImage.style.backgroundPosition = 'center';
 
-    const cardContent = document.createElement("div");
-    cardContent.classList.add("card-content");
+      const cardContent = document.createElement("div");
+      cardContent.classList.add("card-content");
+      const cardHeader = document.createElement("span");
+      cardHeader.classList.add("card-header");
 
-    const cardHeader = document.createElement("span");
-    cardHeader.classList.add("card-header");
+      const foodType = document.createElement("p");
+      foodType.classList.add("food-type");
+      foodType.textContent = comida.itemMenuNuevo.categoria;
+      cardHeader.style.backgroundColor = obtenerColorPorCategoria(comida.itemMenuNuevo.categoria);
 
-    // categoria del plato
-    const foodType = document.createElement("p");
-    foodType.classList.add("food-type");
-    foodType.textContent = comida.itemMenuNuevo.categoria;
-    cardHeader.style.backgroundColor = obtenerColorPorCategoria(comida.itemMenuNuevo.categoria);
+      const quantityContainer = document.createElement("div");
+      quantityContainer.classList.add("quantity-container");
+      const cantidadLabel = document.createElement("p");
+      cantidadLabel.classList.add("quantity-label");
+      cantidadLabel.textContent = "Cantidad";
 
-    const quantityContainer = document.createElement("div");
-    quantityContainer.classList.add("quantity-container");
+      const buttonCardContainer = document.createElement("div");
+      buttonCardContainer.classList.add("button-card-container");
+      const restarButton = document.createElement("button");
+      restarButton.classList.add("button-card", "restar");
+      restarButton.textContent = "-";
+      const cantidadDisplay = document.createElement("p");
+      cantidadDisplay.classList.add("cantidad");
+      let cantidad = cargarSeleccion(dia, comida.itemMenuNuevo.id); // Cargar cantidad seleccionada
+      cantidadDisplay.textContent = cantidad;
 
-    const cantidadLabel = document.createElement("p");
-    cantidadLabel.classList.add("quantity-label");
-    cantidadLabel.textContent = "Cantidad";
+      const sumarButton = document.createElement("button");
+      sumarButton.classList.add("button-card", "sumar");
+      sumarButton.textContent = "+";
+      buttonCardContainer.appendChild(restarButton);
+      buttonCardContainer.appendChild(cantidadDisplay);
+      buttonCardContainer.appendChild(sumarButton);
+      quantityContainer.appendChild(cantidadLabel);
+      quantityContainer.appendChild(buttonCardContainer);
 
-    const buttonCardContainer = document.createElement("div");
-    buttonCardContainer.classList.add("button-card-container");
+      const separator1 = document.createElement("hr");
+      separator1.classList.add("separator");
 
-    const restarButton = document.createElement("button");
-    restarButton.classList.add("button-card", "restar");
-    restarButton.textContent = "-";
+      const foodName = document.createElement("h1");
+      foodName.classList.add("food-name");
+      foodName.textContent = comida.itemMenuNuevo.nombre;
 
-    const cantidadDisplay = document.createElement("p");
-    cantidadDisplay.classList.add("cantidad");
-    cantidadDisplay.textContent = "0";
+      const separator2 = document.createElement("hr");
+      separator2.classList.add("separator");
 
-    const sumarButton = document.createElement("button");
-    sumarButton.classList.add("button-card", "sumar");
-    sumarButton.textContent = "+";
+      const foodDescription = document.createElement("p");
+      foodDescription.classList.add("food-description");
+      foodDescription.textContent = comida.itemMenuNuevo.descripcion;
 
-    buttonCardContainer.appendChild(restarButton);
-    buttonCardContainer.appendChild(cantidadDisplay);
-    buttonCardContainer.appendChild(sumarButton);
-    quantityContainer.appendChild(cantidadLabel);
-    quantityContainer.appendChild(buttonCardContainer);
+      cardHeader.appendChild(foodType);
+      cardContent.appendChild(cardHeader);
+      cardContent.appendChild(quantityContainer);
+      cardContent.appendChild(separator1);
+      cardContent.appendChild(foodName);
+      cardContent.appendChild(separator2);
+      cardContent.appendChild(foodDescription);
+      card.appendChild(cardImage);
+      card.appendChild(cardContent);
+      menuContainer.appendChild(card);
 
-    // Crear y añadir una línea separadora
-    const separator1 = document.createElement("hr");
-    separator1.classList.add("separator");
-
-    // nombre del plato
-    const foodName = document.createElement("h1");
-    foodName.classList.add("food-name");
-    foodName.textContent = comida.itemMenuNuevo.nombre;
-
-    // Crear y añadir una línea separadora
-    const separator2 = document.createElement("hr");
-    separator2.classList.add("separator");
-
-    // Crear y añadir la descripción del plato
-    const foodDescription = document.createElement("p");
-    foodDescription.classList.add("food-description");
-    foodDescription.textContent = comida.itemMenuNuevo.descripcion;
-
-    cardHeader.appendChild(foodType);
-    cardContent.appendChild(cardHeader);
-    cardContent.appendChild(quantityContainer);
-    cardContent.appendChild(separator1); // Añadir el separador
-    cardContent.appendChild(foodName);
-    cardContent.appendChild(separator2); // Añadir el separador
-    cardContent.appendChild(foodDescription);  // Añadir la descripción
-
-    card.appendChild(cardImage);
-    card.appendChild(cardContent);
-    menuContainer.appendChild(card);
-
-    // Agregar la funcionalidad de sumar/restar
-    let cantidad = 0;
-
-    restarButton.addEventListener("click", () => {
-        if (cantidad > 0) {
-            cantidad--;
-            cantidadDisplay.textContent = cantidad;
-        }
-    });
-
-    sumarButton.addEventListener("click", () => {
-        cantidad++;
-        cantidadDisplay.textContent = cantidad;
-    });
-});
+      // Agregar la funcionalidad de sumar/restar
+      comida.cantidad = cantidad;
+      restarButton.addEventListener("click", () => {
+          if (cantidad > 0) {
+              cantidad--;
+              cantidadDisplay.textContent = cantidad;
+              comida.cantidad = cantidad;
+              guardarSeleccion(dia, comida);
+          }
+      });
+      sumarButton.addEventListener("click", () => {
+          cantidad++;
+          cantidadDisplay.textContent = cantidad;
+          comida.cantidad = cantidad;
+          guardarSeleccion(dia, comida);
+      });
+  });
 }
+
+function guardarSeleccion(dia, comida) {
+  let selecciones = JSON.parse(localStorage.getItem('selecciones')) || {};
+  if (!selecciones[dia]) {
+      selecciones[dia] = [];
+  }
+  const index = selecciones[dia].findIndex(item => item.id === comida.itemMenuNuevo.id);
+  if (index > -1) {
+      selecciones[dia][index] = {
+          id: comida.itemMenuNuevo.id,
+          nombre: comida.itemMenuNuevo.nombre,
+          categoria: comida.itemMenuNuevo.categoria,
+          cantidad: comida.cantidad
+      };
+  } else {
+      selecciones[dia].push({
+          id: comida.itemMenuNuevo.id,
+          nombre: comida.itemMenuNuevo.nombre,
+          categoria: comida.itemMenuNuevo.categoria,
+          cantidad: comida.cantidad
+      });
+  }
+  localStorage.setItem('selecciones', JSON.stringify(selecciones));
+}
+
+  function cargarSeleccion(dia, comidaId) {
+    const selecciones = JSON.parse(localStorage.getItem('selecciones')) || {};
+    if (selecciones[dia]) {
+        const seleccion = selecciones[dia].find(item => item.id === comidaId);
+        return seleccion ? seleccion.cantidad : 0;
+    }
+    return 0;
+  }
+
+  async function finalizarPedido() {
+    const selecciones = JSON.parse(localStorage.getItem('selecciones')) || {};
+    const pedido = { 
+        pedido: {
+            id_empleado: 1, // Aquí ajusta según tu lógica
+            semana: 42,     // Aquí ajusta según tu lógica
+            fecha_pedido: new Date().toISOString().split('T')[0],
+            fecha_baja: null
+        },
+        pedidoItemMenus: []
+    };
+    
+    for (let dia in selecciones) {
+        selecciones[dia].forEach(comida => {
+            pedido.pedidoItemMenus.push({
+                dia: dia,
+                cantidad: comida.cantidad,
+                itemMenu: {
+                    id: comida.id
+                }
+            });
+        });
+    }
+
+    try {
+        const response = await fetch('http://localhost:8080/api/agregar/pedido', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(pedido)
+        });
+
+        if (response.ok) {
+            console.log('Pedido finalizado con éxito');
+            localStorage.removeItem('selecciones'); // Limpiar selecciones después de finalizar
+        } else {
+            console.error('Error al finalizar el pedido');
+        }
+    } catch (error) {
+        console.error('Error al realizar la solicitud:', error);
+    }
+}
+
+document.getElementById("finalizarPedido").addEventListener("click", finalizarPedido);
+
+// Limpiar el almacenamiento local cuando la página se carga
+window.addEventListener("load", () => {
+  localStorage.removeItem('selecciones');
+});
 
 // Mostrar menú del primer día (Lunes) al cargar la página
 document.addEventListener("DOMContentLoaded", () => {
