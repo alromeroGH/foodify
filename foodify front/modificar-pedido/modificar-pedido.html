@@ -3,39 +3,98 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalle de pedido</title>
     <link rel="stylesheet" href="modificar-pedido.css">
-
-    <link href='https://fonts.googleapis.com/css?family=Rubik' rel='stylesheet'>
-    <link href='https://fonts.googleapis.com/css?family=Quicksand' rel='stylesheet'>
-    <title>Home page</title>
 </head>
-
 <body>
-    <!-- Barra de navegacion -->
-    <nav class="navbar">
-        <img src="../img/logo.png" alt="logo" class="logo">
-        <ul class="nav-links">
-            <li class="btn-primary" onclick="cambiarColor(this,'btn-primary','highlight-primary')">
-                <a href="../home/home.html">Inicio</a>
+
+  <!-- Barra de navegacion -->
+  <nav class="navbar">
+    <img src="../img/logo.png" alt="logo" class="logo">
+    <ul class="nav-links">
+        <li class="btn-primary" onclick="cambiarColor(this,'btn-primary','highlight-primary')">
+            <a href="../home/home.html">Inicio</a>
+        </li>
+        <li class="btn-primary" onclick="cambiarColor(this,'btn-primary','highlight-primary')">
+            <a href="#" target="_self">Pedido</a>
+        </li>
+        <li class="btn-primary" onclick="cambiarColor(this,'btn-primary','highlight-primary')">
+            <a href="../historial/historial.html">Historial</a>
+        </li>
+        <li class="btn-primary" onclick="cambiarColor(this,'btn-primary','highlight-primary')">
+            <a href="../perfil/perfil.html">Perfil</a>
+        </li>
+        <li class="btn-primary" onclick="cambiarColor(this,'btn-primary','highlight-primary')">
+            <a href="../index.html">Cerrar Sesion</a>
+        </li>
+    </ul>
+</nav>
+
+<div class="header">
+    <h1>Detalle de pedido</h1>
+</div>
+
+<div class="menu-semanal">
+    
+    <div class="dia">
+        <h2>Lunes, 15 de noviembre</h2>
+        <ul>
+            <li>
+                <img src="../img/Milanesa.jpeg" alt="Milanesa de pollo con puré">
+                <span>Milanesa de pollo con puré</span>
+                <span class="cantidad">x1</span>
             </li>
-            <li class="btn-primary" onclick="cambiarColor(this,'btn-primary','highlight-primary')">
-                <a href="#" target="_self">Pedido</a>
+            <li>
+                <img src="../img/ensalada.jpeg" alt="Ensalada cruda">
+                <span>Ensalada cruda</span>
             </li>
-            <li class="btn-primary" onclick="cambiarColor(this,'btn-primary','highlight-primary')">
-                <a href="../historial/historial.html">Historial</a>
-            </li>
-            <li class="btn-primary" onclick="cambiarColor(this,'btn-primary','highlight-primary')">
-                <a href="../perfil/perfil.html">Perfil</a>
-            </li>
-            <li class="btn-primary" onclick="cambiarColor(this,'btn-primary','highlight-primary')">
-                <a href="../index.html">Cerrar Sesion</a>
+            <li>
+                <img src="../img/coca.jpeg" alt="Coca-Cola Zero 250ml">
+                <span>Coca-Cola Zero 250ml</span>
             </li>
         </ul>
-    </nav>
-
-    <!-- Banner de la pagina -->
-    <div class="banner">
-        <h2>Menu Semanal</h2>
-        <h4>¡ Selecciona tu  pedido !</h4>
     </div>
+
+    <div class="dia">
+        <h2>Martes, 16 de noviembre</h2>
+        <ul>
+            <li>
+                <img src="../img/Milanesa.jpeg" alt="Milanesa de pollo con puré">
+                <span>Milanesa de pollo con puré</span>
+                <span class="cantidad">x1</span>
+            </li>
+            <li>
+                <img src="../img/ensalada.jpeg" alt="Ensalada cruda">
+                <span>Ensalada cruda</span>
+            </li>
+            <li>
+                <img src="../img/coca.jpeg" alt="Coca-Cola Zero 250ml">
+                <span>Coca-Cola Zero 250ml</span>
+            </li>
+        </ul>
+    </div>
+
+    <div class="dia">
+        <h2>Miercoles, 17 de noviembre</h2>
+        <ul>
+            <li>
+                <img src="../img/Milanesa.jpeg" alt="Milanesa de pollo con puré">
+                <span>Milanesa de pollo con puré</span>
+                <span class="cantidad">x1</span>
+            </li>
+            <li>
+                <img src="../img/ensalada.jpeg" alt="Ensalada cruda">
+                <span>Ensalada cruda</span>
+            </li>
+            <li>
+                <img src="../img/coca.jpeg" alt="Coca-Cola Zero 250ml">
+                <span>Coca-Cola Zero 250ml</span>
+            </li>
+        </ul>
+    </div>
+
+</div>
+
+<script src="modificar-pedido.js"></script>
 </body>
+</html>

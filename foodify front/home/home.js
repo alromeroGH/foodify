@@ -242,3 +242,9 @@ document.addEventListener("DOMContentLoaded", () => {
   cambiarColor(lunesButton, 'day-button', 'highlight-day'); // Resaltar el botón Lunes
   mostrarMenu("LUNES"); // Mostrar el menú del Lunes
 });
+
+
+//funcion de prueba
+function finalizarPedido() {
+  alert("Pedido finalizado"); // Puedes reemplazar esto con la acción que necesites
+}
