@@ -219,8 +219,9 @@ function guardarSeleccion(dia, comida) {
         });
 
         if (response.ok) {
-            console.log('Pedido finalizado con éxito');
+            alert('Pedido finalizado con éxito');
             localStorage.removeItem('selecciones'); // Limpiar selecciones después de finalizar
+            window.location.href = '../modificar-pedido/modificar-pedido.html';
         } else {
             console.error('Error al finalizar el pedido');
         }
@@ -242,9 +243,3 @@ document.addEventListener("DOMContentLoaded", () => {
   cambiarColor(lunesButton, 'day-button', 'highlight-day'); // Resaltar el botón Lunes
   mostrarMenu("LUNES"); // Mostrar el menú del Lunes
 });
-
-
-//funcion de prueba
-function finalizarPedido() {
-  alert("Pedido finalizado"); // Puedes reemplazar esto con la acción que necesites
-}
