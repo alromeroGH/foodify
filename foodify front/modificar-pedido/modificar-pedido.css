@@ -85,3 +85,61 @@ h1, h2, h3, h4 {
     background-position: center;
     background-repeat: no-repeat;
 }
+
+.header {
+    margin: 0;
+    height: 210px;
+    text-align: center;
+    background-image: linear-gradient(rgba(255,255,255,0.8), rgba(255,255,255,0.7)), url(../img/comida_1.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+    color: var(--color-dark-blue);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.menu-semanal {
+    padding: 20px;
+}
+
+.dia {
+    margin-bottom: 40px;
+}
+
+h2 {
+    font-size: 28px;
+    margin-bottom: 10px;
+    border-bottom: 2px solid black;
+    display: inline-block;
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+}
+
+li {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+img {
+    width: 90px;
+    height: 50px;
+    margin-right: 10px;
+    border-radius: 20px;
+}
+
+span {
+    font-size: 22px;
+    margin-left: 30px;
+}
+
+.cantidad {
+    margin-left: auto;
+    color: red;
+    font-weight: bold;
+}

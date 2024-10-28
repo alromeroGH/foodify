@@ -143,3 +143,23 @@ h1, h2, h3, h4 {
     display: none; /* Ocultar inicialmente */
     transition: opacity 0.3s;
 }
+
+/*---- SUPER PARCHEADO Y MAL HECHO (PARA SAFAR) ----*/
+
+.contenedor {
+    display: flex;
+    justify-content: center; /* Centra horizontalmente */
+    width: 100%; /* Asegura que el contenedor ocupe el ancho completo */
+}
+
+#finalizarPedido {
+    background-color: var(--color-green);
+    color: black;
+    font-size: 0.6rem;
+    font-weight: 300;
+    font-family: var(--font-rubik);
+    padding: 5px 14px;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+}
