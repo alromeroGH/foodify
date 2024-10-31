@@ -41,6 +41,12 @@ public class EmpleadoDaoImpl implements IEmpleadoDao {
     }
 
     @Override
+    public void eliminarPedido() {
+        entityManager.createQuery("DELETE FROM PedidoItemMenu").executeUpdate();
+        entityManager.createQuery("DELETE FROM Pedido").executeUpdate();
+    }
+
+    @Override
     public List<PedidoRequest> getPedido() {
         String sql = "SELECT pim.dia, pim.cantidad, im.nombre, im.categoria FROM pedido_item_menu pim" +
                 " INNER JOIN item_menu im ON im.id = pim.id_item_menu";
@@ -60,5 +66,4 @@ public class EmpleadoDaoImpl implements IEmpleadoDao {
 
         return pedidoRequests;
     }
-
 }

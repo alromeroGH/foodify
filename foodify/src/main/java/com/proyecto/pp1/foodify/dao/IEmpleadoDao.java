@@ -11,5 +11,7 @@ public interface IEmpleadoDao {
 
     void modificarPedido(PedidoItemMenu pedidoItemMenu);
 
+    void eliminarPedido();
+
     List<PedidoRequest> getPedido();
 }

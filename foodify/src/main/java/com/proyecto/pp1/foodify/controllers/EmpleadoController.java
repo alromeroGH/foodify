@@ -31,6 +31,12 @@ public class EmpleadoController {
         return "OK";
     }
 
+    @PostMapping("/eliminar/pedido")
+    public String eliminarPedido() {
+        empleadoDao.eliminarPedido();
+        return "OK";
+    }
+
     @GetMapping("/obtener/pedido")
     public List<PedidoRequest> getPedido() {
         return empleadoDao.getPedido();

@@ -1,5 +1,4 @@
-/*Funcion para cambiar el color de un boton*/
-
+// Funcion para cambiar el color de un boton
 function cambiarColor(button, buttonClass, newStyle) {
   // Obtiene todos los botones con la clase "day-button"
   const buttons = document.querySelectorAll(`.${buttonClass}`);
@@ -67,5 +66,29 @@ async function getPedido() {
   document.querySelector('.menu-semanal').innerHTML = listadoHtml;
 }
 
-
 getPedido();
+
+function modificarPedido() {
+  document.location.href = '../home/home.html';
+}
+
+async function eliminarPedido() {
+  let confirmar = confirm("Desea eliminar su pedido?");
+
+  if (confirmar) {
+    const response = await fetch('http://localhost:8080/api/eliminar/pedido', {
+      method: 'POST',
+      headers: {
+          'Content-Type': 'application/json'
+      },
+    });
+
+    const respuesta = await response.text();
+
+    if (respuesta == 'OK') {
+      alert('Pedido eliminado con éxito');
+      localStorage.removeItem('selecciones');
+      location.reload();
+    }
+  }
+}

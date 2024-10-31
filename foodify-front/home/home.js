@@ -1,4 +1,4 @@
-/* Funcion para cambiar el color de un boton */
+// Funcion para cambiar el color de un boton 
 function cambiarColor(button, buttonClass, newStyle) {
   const buttons = document.querySelectorAll(`.${buttonClass}`);
   buttons.forEach((btn) => btn.classList.remove(newStyle));
@@ -20,13 +20,13 @@ document.getElementById("scrollToTop").addEventListener("click", () => {
   window.scrollTo({ top: 0, behavior: 'smooth' });
 });
 
-
-/* Cambiar día y mostrar menú */
+// Cambiar día y mostrar menú 
 function cambiarDia(element, dia) {
   const dayButtons = document.querySelectorAll('.day-button');
   dayButtons.forEach(btn => btn.classList.remove('highlight-day'));
   element.classList.add('highlight-day');
   mostrarMenu(dia);
+  bloquearContador(); // Desbloquear contador según el estado global
 }
 
 const obtenerColorPorCategoria = (categoria) => {
@@ -49,7 +49,7 @@ const obtenerImagenPorCategoria = (categoria) => {
   }
 }
 
-/* Mostrar menú */
+// Mostrar menú 
 async function mostrarMenu(dia) {
   const request = await fetch('http://localhost:8080/api/obtener', {
       method: 'GET',
@@ -136,7 +136,7 @@ async function mostrarMenu(dia) {
       // Agregar la funcionalidad de sumar/restar
       comida.cantidad = cantidad;
       restarButton.addEventListener("click", () => {
-          if (cantidad > 0) {
+          if (cantidad > 0 && !restarButton.disabled) {
               cantidad--;
               cantidadDisplay.textContent = cantidad;
               comida.cantidad = cantidad;
@@ -144,20 +144,29 @@ async function mostrarMenu(dia) {
           }
       });
       sumarButton.addEventListener("click", () => {
-          cantidad++;
-          cantidadDisplay.textContent = cantidad;
-          comida.cantidad = cantidad;
-          guardarSeleccion(dia, comida);
+          if (!sumarButton.disabled) {
+              cantidad++;
+              cantidadDisplay.textContent = cantidad;
+              comida.cantidad = cantidad;
+              guardarSeleccion(dia, comida);
+          }
       });
   });
 }
 
 function guardarSeleccion(dia, comida) {
+  // Obtener las selecciones del localStorage o inicializar un objeto vacío si no existen.
   let selecciones = JSON.parse(localStorage.getItem('selecciones')) || {};
+  
+  // Si no hay selecciones para el día actual, inicializar un arreglo vacío.
   if (!selecciones[dia]) {
       selecciones[dia] = [];
   }
+  
+  // Buscar el índice del elemento en las selecciones para el día actual, usando el id de la comida.
   const index = selecciones[dia].findIndex(item => item.id === comida.itemMenuNuevo.id);
+  
+  // Si el elemento ya existe (índice mayor a -1), actualizar la cantidad y otros datos.
   if (index > -1) {
       selecciones[dia][index] = {
           id: comida.itemMenuNuevo.id,
@@ -166,6 +175,7 @@ function guardarSeleccion(dia, comida) {
           cantidad: comida.cantidad
       };
   } else {
+      // Si el elemento no existe, agregarlo a las selecciones para el día actual.
       selecciones[dia].push({
           id: comida.itemMenuNuevo.id,
           nombre: comida.itemMenuNuevo.nombre,
@@ -173,24 +183,37 @@ function guardarSeleccion(dia, comida) {
           cantidad: comida.cantidad
       });
   }
+  
+  // Guardar las selecciones actualizadas en localStorage.
   localStorage.setItem('selecciones', JSON.stringify(selecciones));
 }
 
-  function cargarSeleccion(dia, comidaId) {
-    const selecciones = JSON.parse(localStorage.getItem('selecciones')) || {};
-    if (selecciones[dia]) {
-        const seleccion = selecciones[dia].find(item => item.id === comidaId);
-        return seleccion ? seleccion.cantidad : 0;
-    }
-    return 0;
+function cargarSeleccion(dia, comidaId) {
+  // Intenta cargar la selección modificada, si existe en localStorage
+  const modificarSeleccion = JSON.parse(localStorage.getItem('modificarSeleccion')) || {};
+
+  // Verifica si hay un valor seleccionado previamente en modificarSeleccion
+  if (modificarSeleccion[dia]) {
+    const seleccion = modificarSeleccion[dia].find(item => item.id === comidaId);
+    return seleccion ? seleccion.cantidad : 0;
   }
+
+  // Si no existe en modificarSeleccion, busca en selecciones (como estaba originalmente)
+  const selecciones = JSON.parse(localStorage.getItem('selecciones')) || {};
+  if (selecciones[dia]) {
+    const seleccion = selecciones[dia].find(item => item.id === comidaId);
+    return seleccion ? seleccion.cantidad : 0;
+  }
+
+  return 0; // Devuelve 0 si no hay ninguna selección guardada
+}
 
   async function finalizarPedido() {
     const selecciones = JSON.parse(localStorage.getItem('selecciones')) || {};
     const pedido = { 
         pedido: {
             id_empleado: 1, // Aquí ajusta según tu lógica
-            semana: 42,     // Aquí ajusta según tu lógica
+            semana: 2,     // Aquí ajusta según tu lógica
             fecha_pedido: new Date().toISOString().split('T')[0],
             fecha_baja: null
         },
@@ -220,7 +243,6 @@ function guardarSeleccion(dia, comida) {
 
         if (response.ok) {
             alert('Pedido finalizado con éxito');
-            localStorage.removeItem('selecciones'); // Limpiar selecciones después de finalizar
             window.location.href = '../modificar-pedido/modificar-pedido.html';
         } else {
             console.error('Error al finalizar el pedido');
@@ -232,14 +254,19 @@ function guardarSeleccion(dia, comida) {
 
 document.getElementById("finalizarPedido").addEventListener("click", finalizarPedido);
 
-// Limpiar el almacenamiento local cuando la página se carga
-window.addEventListener("load", () => {
-  localStorage.removeItem('selecciones');
-});
-
 // Mostrar menú del primer día (Lunes) al cargar la página
 document.addEventListener("DOMContentLoaded", () => {
   const lunesButton = document.querySelector('.day-button:first-child'); // Botón de Lunes
   cambiarColor(lunesButton, 'day-button', 'highlight-day'); // Resaltar el botón Lunes
   mostrarMenu("LUNES"); // Mostrar el menú del Lunes
 });
+
+// Verificar si hay datos en localStorage
+const selecciones = JSON.parse(localStorage.getItem('selecciones')) || {};
+if (Object.keys(selecciones).length > 0) {
+  const continuar = confirm("Desea modificar su pedido?");
+  if (!continuar) {
+      // Si el usuario no quiere continuar, redirigir a modificar-pedido.html
+      window.location.href = '../modificar-pedido/modificar-pedido.html';
+  }
+}
