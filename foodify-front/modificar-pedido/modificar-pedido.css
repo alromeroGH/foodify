@@ -1,13 +1,17 @@
+/*-------------------- RESET CSS --------------------*/
 
 :root {
-    --color-blue: #213f6f;
-    --color-gray: #79747e;
-    --color-orange: #ffc888;
-    --color-dark-blue: #232a35;
+    --color-dark-blue: #2c3e50;
+    --color-orange: #ffcc80;
     --color-dark-orange: #ff9327;
-    --color-red: #ff6962;
-    --color-green: #8CD47E;
-    --color-white: #f5f5f5;
+    --color-gold: #f1c40f;
+    --color-red:#f42c54;
+    --color-green: #08cc8c;
+    --color-dark-green: #8eac84;
+    --color-yellow: #ffe57f;
+    --color-white: #ffffff;
+    --color-gray: #ecf0f1;
+    --color-dark-grey:#34495e;
 
     --font-quick: 'Quicksand', sans-serif;
     --font-rubik: 'Rubik', sans-serif;
@@ -29,117 +33,230 @@ a {
 }
 
 h1, h2, h3, h4 {
-    font-family: var(--font-quick);
+    font-family: var(--font-quick) 
 }
 
-/*-------------------- BOTONES --------------------*/
-.btn-primary {
-    background-color: transparent;
-    color: black;
-    font-size: 1rem;
-    font-weight: 500;
-    font-family: var(--font-rubik);
-    padding: 5px 14px;
-    border-radius: 8px;
-    border: none;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
+/*---- ESTILO HEADER ----*/
 
-.highlight-primary {
-    background-color: var(--color-dark-orange);
-}
-/*-------------------- BOTONES --------------------*/
-
-/*---- ESTILO NAVBAR ----*/
-.navbar {
+header{
     display: flex;
-    justify-content: space-between;
-    padding: 0.5rem;
-}
+    justify-content: space-between; 
+    align-items: center;            
+    height: 2.5rem;                  
+    padding: 1rem;    
+    width: 100%;   
 
-.nav-links {
-    display: flex;
-    list-style: none;
-}
+    position: relative;
+    z-index: 10;
 
-.nav-links li {
-    margin-left: 1rem;
+    background-color: var(--color-red);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
 }
 
 .logo{
-    width: 30px;
-    height: 30px; 
+    width: 2.3rem;                  
+    height: 2.3rem;                                 
+    border-radius: 50%;
+}
+
+.logo img{
+    width: auto;                    
+    height: 100%;                                  
+}
+
+header h2{
+    margin-left: 1rem; 
+    font-size: 1.8rem;
+    color: var(--color-white);
+    width: 100%;
+}
+
+/*---- ESTILO NAVBAR ----*/
+.navbar {
+    padding: 0.5rem;
+}
+
+.navbar ul {
+    display: flex;
+    list-style: none;
+    align-items: center;
+}
+
+.navbar li {
+    background-color: transparent;
+    color: var(--color-white);
+    font-size: 1rem;
+    font-weight: 500;
+    font-family: var(--font-rubik);
+    border: none;
+    cursor: pointer;
+    margin-left: 3rem;
+}
+
+.navbar li:hover{
+    text-decoration:underline;
+}
+
+/*---- ESTILO MAIN ----*/
+
+main{
+    display: flex;
+    width: 100%;
+}
+
+/*---- ESTILO CONTENIDO ----*/
+
+.contenido{
+    flex:1;
+    margin-left: 20%;
     
 }
 
 /*---- ESTILO BANNER ----*/
+
 .banner {
     align-content: center;
     align-items: center;
     text-align: center;
-    min-height: 8rem;
-    padding: 1rem;
-    background-image: linear-gradient(rgba(255,255,255,0.8), rgba(255,255,255,0.7)), url(../img/comida_1.jpg);
+    min-height: 10rem;
+    padding: 0;
+
+    background-image: linear-gradient(rgba(255,255,255,0.7), rgba(255,255,255,0.7)), url(../img/img-banner.jpg);
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
 }
 
-.header {
-    margin: 0;
-    height: 210px;
-    text-align: center;
-    background-image: linear-gradient(rgba(255,255,255,0.8), rgba(255,255,255,0.7)), url(../img/comida_1.jpg);
-    background-repeat: no-repeat;
-    background-size: cover;
-    position: relative;
-    color: var(--color-dark-blue);
+/*---- ESTILO SIDEBAR ----*/
+.sidebar{
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
+    width: 20%;
+    height: 100vh;
+    padding: 2rem;
+
+    position: fixed;
+    top:0;
+    z-index: 5;
+    
+
+    background: var(--color-red);
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.3);
+    color: var(--color-white);
+    text-align: center;
+    
+}
+
+.menu {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(271px, 1fr));
+    gap: 1rem; /* Espacio entre las cards */
+    padding: 1rem;
+}
+
+/*---- SCROLL TO TOP----*/
+
+.scroll-to-top {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: var(--color-dark-orange);
+    color: var(--color-white);
+    border: none;
+    border-radius: 5px;
+    padding: 10px;
+    cursor: pointer;
+    display: none; /* Ocultar inicialmente */
+    transition: opacity 0.3s;
 }
 
 .menu-semanal {
     padding: 20px;
 }
 
-.dia {
+.menu-semanal.dia {
     margin-bottom: 40px;
 }
 
-h2 {
+.menu-semanal h2 {
     font-size: 28px;
     margin-bottom: 10px;
     border-bottom: 2px solid black;
     display: inline-block;
+    font-family: var(--font-quick);
 }
 
-ul {
+.menu-semanal ul {
     list-style: none;
     padding: 0;
 }
 
-li {
+.menu-semanal li {
     display: flex;
     align-items: center;
     margin-bottom: 10px;
 }
 
-img {
+.menu-semanal img {
     width: 90px;
     height: 50px;
     margin-right: 10px;
     border-radius: 20px;
 }
 
-span {
+.menu-semanal span {
     font-size: 22px;
     margin-left: 30px;
 }
 
-.cantidad {
+.menu-semanal .cantidad {
     margin-left: auto;
     color: red;
     font-weight: bold;
+}
+
+.btn-modificar{
+    background-color: var(--color-dark-blue);
+    color: var(--color-white);
+    font-size: 1rem;
+    font-weight: 300;
+    font-family: var(--font-rubik);
+
+    margin: 1rem 0;
+    padding: 5px 14px;
+
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+
+    transition: transform 0.4s ease, font-size 0.4s ease;
+}
+
+.btn-modificar:hover{
+    transform: scale(1.2);
+    font-size: 1rem;
+}
+
+.btn-eliminar{
+    background-color: var(--color-dark-blue);
+    color: var(--color-white);
+    font-size: 1rem;
+    font-weight: 300;
+    font-family: var(--font-rubik);
+
+    margin: 1rem 0;
+    padding: 5px 14px;
+
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+
+    transition: transform 0.4s ease, font-size 0.4s ease;
+}
+
+.btn-eliminar:hover{
+    transform: scale(1.2);
+    font-size: 1rem;
 }

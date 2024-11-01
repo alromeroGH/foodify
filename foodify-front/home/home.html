@@ -10,55 +10,50 @@
 </head>
 
 <body>
-    <!-- Barra de navegacion -->
-    <nav class="navbar">
-        <img src="../img/logo.png" alt="logo" class="logo">
-        <ul class="nav-links">
-            <li class="btn-primary" onclick="cambiarColor(this,'btn-primary','highlight-primary')">
-                <a href="#" target="_self">Inicio</a>
-            </li>
-            <li class="btn-primary" onclick="cambiarColor(this,'btn-primary','highlight-primary')">
-                <a href="../modificar-pedido/modificar-pedido.html">Pedido</a>
-            </li>
-            <li class="btn-primary" onclick="cambiarColor(this,'btn-primary','highlight-primary')">
-                <a href="../historial/historial.html">Historial</a>
-            </li>
-            <li class="btn-primary" onclick="cambiarColor(this,'btn-primary','highlight-primary')">
-                <a href="../perfil/perfil.html">Perfil</a>
-            </li>
-            <li class="btn-primary" onclick="cambiarColor(this,'btn-primary','highlight-primary')">
-                <a href="../index.html">Cerrar Sesion</a>
-            </li>
-        </ul>
-    </nav>
+    <header>
+        <span class="logo"><img src="../img/logo.png" alt="Logo Foodify"></span>
+        <h2>Foodify</h2>
+        <nav class="navbar">
+            <ul>
+                <li><a href="#" target="_self">Inicio</a></li>
+                <li><a href="../modificar-pedido/modificar-pedido.html">Pedido</a></li>
+                <li><a href="../historial/historial.html">Historial</a></li>
+                <li><a href="../perfil/perfil.html">Perfil</a></li>
+                <li><a href="../index.html">Cerrar Sesión</a></li>
+            </ul>
+        </nav>
+    </header>
 
-    <!-- Banner de la pagina -->
-    <div class="banner">
-        <h2>Menu Semanal</h2>
-        <h4>¡Selecciona tu pedido!</h4>
-    </div>
-
-    <!-- Barra de dias -->
-    <div class="daybar">
-        <ul class="daybar-links">
-            <li class="day-button" onclick="cambiarDia(this, 'LUNES')">Lunes</li>
-            <li class="day-button" onclick="cambiarDia(this, 'MARTES')">Martes</li>
-            <li class="day-button" onclick="cambiarDia(this, 'MIERCOLES')">Miércoles</li>
-            <li class="day-button" onclick="cambiarDia(this, 'JUEVES')">Jueves</li>
-            <li class="day-button" onclick="cambiarDia(this, 'VIERNES')">Viernes</li>
-        </ul>
-    </div>
-
-    <div class="contenedor">
-        <div id="finalizarPedido">
-            <h2>Finalizar Pedido</h2>
+    <main>
+        <aside class="sidebar">
+             <!-- Barra de dias -->
+            <div class="daybar">
+                <h1>Platos de la Semana</h1>
+                <p>Elije tu plato para cada dia<p>
+                <ul>
+                    <li class="day-button" onclick="cambiarDia(this, 'LUNES')">Lunes</li>
+                    <li class="day-button" onclick="cambiarDia(this, 'MARTES')">Martes</li>
+                    <li class="day-button" onclick="cambiarDia(this, 'MIERCOLES')">Miércoles</li>
+                    <li class="day-button" onclick="cambiarDia(this, 'JUEVES')">Jueves</li>
+                    <li class="day-button" onclick="cambiarDia(this, 'VIERNES')">Viernes</li>
+                </ul>
+            </div>
+            <button id="finalizarPedido">Confirmar</button>
+        </aside>
+        
+        <div class ="contenido">
+            <!-- Banner de la pagina -->
+            <div class="banner">
+                <h2>Menu Semanal</h2>
+                <h4>¡Selecciona tu pedido!</h4>
+            </div>
+    
+            <!-- Menu de platos principales -->
+            <div class="menu"></div>
+            
+            <button id="scrollToTop" class="scroll-to-top">↑ Volver arriba</button>
         </div>
-    </div>
-    
-    <!-- Menu de platos principales -->
-    <div class="menu"></div>
-    
-    <button id="scrollToTop" class="scroll-to-top">↑ Volver arriba</button>
+    </main>
     <script src="home.js"></script>
 </body>
 </html>
