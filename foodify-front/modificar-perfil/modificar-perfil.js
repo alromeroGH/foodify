@@ -7,7 +7,7 @@ function validarDatos() {
     let apellidoError = document.getElementById('apellido-error');
     let emailError = document.getElementById('email-error');
 
-    let regex = /^[-\w.%+]{1,64}@(?:[A-Za-z0-9-]{1,63}\.){1,125}[A-Za-z]{2,63}$/;
+    let regex = /^[-\w.%+]{1,64}@(?:[A-Za-z0-9-]{1,63}\.){1,125}[A-Za-z]{2,63}$/; //validar direccion de correo
     let valido = true;
 
     if (nombre.value == '') {
