@@ -35,7 +35,6 @@ function cambiarDia(element, dia) {
   dayButtons.forEach(btn => btn.classList.remove('highlight-day'));   // Elimina el resaltado de todos los botones
   element.classList.add('highlight-day'); // Agrega el resaltado 
   mostrarMenu(dia);
-  bloquearContador(); // Desbloquear contador según el estado global
 }
 
 // Función para setear color de tarjeta por categoría
@@ -179,14 +178,12 @@ async function mostrarMenu(dia) {
           }
       });
   });
-}  //<-- PERO MIRA TODO LO QUE HACE LA FUNCION MOSTRAR MENU! 
+} 
 
 
 /*
-
 Las selecciones de platos se guardan en el localStorage para persistencia, 
 utilizando las funciones guardarSeleccion y cargarSeleccion
-
 */
 
 // Función para guardar la selección en localStorage
@@ -249,9 +246,7 @@ function cargarSeleccion(dia, comidaId) {
 }
 
 /*
-
 Finalizar el pedido: se agrupan las selecciones y se envían al servidor mediante otra solicitud fetch.
-
 */
 
 // Función para finalizar el pedido
