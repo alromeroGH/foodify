@@ -31,11 +31,7 @@ public class UsuarioController {
 
     @PostMapping("/empleado")
     public String registrarEmpleado(@RequestBody Usuario usuario) {
-        if (usuarioDao.getUsuarioPorEmail(usuario.getEmail()) == "EMPLEADO") {
-            usuarioDao.registrar(usuario);
-            return "OK";
-        } else {
-            return "FAIL";
-        }
+        usuarioDao.registrar(usuario);
+        return "OK";
     }
 }
